@@ -3,56 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>シンプルなウェブページ</title>
+  <title>マイクラDiscordサーバーへようこそ！</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap');
+
     body {
-      font-family: 'Yu Gothic', sans-serif;
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #fafafa;
-      color: #333;
-    }
-    header {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #6dd5fa, #2980b9);
+      color: #fff;
       text-align: center;
-      margin-bottom: 40px;
+      min-height: 100vh;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-x: hidden;
     }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0;
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.8rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+      animation: bounce 2s infinite;
     }
-    p.intro {
-      font-size: 1.2rem;
-      color: #666;
+    p.lead {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      line-height: 1.5;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    section {
-      margin-bottom: 30px;
+    .hero-image {
+      max-width: 600px;
+      width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin: 0 auto 50px auto;
+      transform: rotate(-2deg);
+      transition: transform 0.4s ease;
+      cursor: pointer;
     }
-    h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 6px;
-      margin-bottom: 12px;
-      color: #222;
+    .hero-image:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+    }
+    a.button {
+      background: #ff4757;
+      color: white;
+      font-weight: 700;
+      font-size: 1.8rem;
+      padding: 20px 60px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(255, 71, 87, 0.7);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      user-select: none;
+    }
+    a.button:hover {
+      background: #e84118;
+      box-shadow: 0 10px 25px rgba(232, 65, 24, 0.9);
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 1rem;
+      opacity: 0.8;
+      text-shadow: none;
+      color: #f1f1f1;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) }
+      50% { transform: translateY(-15px) }
+    }
+    /* レスポンシブ対応 */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      p.lead {
+        font-size: 1.1rem;
+      }
+      a.button {
+        font-size: 1.4rem;
+        padding: 16px 40px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>ようこそ！私のウェブページへ</h1>
-    <p class="intro">ここはシンプルで見やすい自己紹介ページです。</p>
-  </header>
+  <h1>🎉 Minecraft Discord サーバー 🎉</h1>
+  <p class="lead">
+    一緒にマイクラの世界で大冒険しよう！<br>
+    初心者もベテランも大歓迎！<br>
+    楽しいイベントやワイワイチャットで盛り上がろう！
+  </p>
 
-  <section>
-    <h2>自己紹介</h2>
-    <p>こんにちは。私はウェブ制作を学んでいる○○です。趣味は読書と散歩、プログラミングも少し勉強しています。</p>
-  </section>
+  <img
+    class="hero-image"
+    src="https://i.imgur.com/k5XzRXf.jpg"
+    alt="Minecraft ワールドのイメージ"
+    loading="lazy"
+  />
 
-  <section>
-    <h2>趣味について</h2>
-    <p>読書は小説や歴史ものが好きで、週末は近くの公園で散歩することが多いです。新しいカフェ巡りも楽しんでいます。</p>
-  </section>
+  <a
+    class="button"
+    href="https://discord.gg/GnHMWUmj"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    今すぐDiscordに参加！
+  </a>
+
+  <footer>
+    ※参加無料！ルールを守って楽しく遊ぼうね☆
+  </footer>
 
 </body>
 </html>
-
