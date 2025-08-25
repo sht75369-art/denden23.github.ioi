@@ -37,7 +37,21 @@
       margin-left: auto;
       margin-right: auto;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-      white-space: pre-line; /* 改行を反映 */
+      white-space: pre-line;
+    }
+    .hero-image {
+      max-width: 650px;
+      width: 90%;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(255, 111, 0, 0.6);
+      margin: 0 auto 40px auto;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 5px solid #fff;
+    }
+    .hero-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 45px rgba(255, 140, 0, 0.9);
     }
     a.button {
       background: #fff;
@@ -102,6 +116,13 @@ Minecraft Adventure Hubへようこそ！
 
 ご参加お待ちしています！
   </p>
+
+  <img
+    class="hero-image"
+    src="./4b40d25c-e84e-4382-a578-7261af9e37b7.png"
+    alt="Minecraft メイン画面のスクリーンショット"
+    loading="lazy"
+  />
 
   <a
     class="button"
