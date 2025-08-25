@@ -37,6 +37,152 @@
       margin-left: auto;
       margin-right: auto;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+      white-space: pre-line; /* 改行を反映 */
+    }
+    a.button {
+      background: #fff;
+      color: #ff6f00;
+      font-weight: 700;
+      font-size: 1.9rem;
+      padding: 22px 70px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(255, 111, 0, 0.7);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+      user-select: none;
+      font-family: 'Fredoka One', cursive;
+    }
+    a.button:hover {
+      background: #ffcc80;
+      box-shadow: 0 12px 30px rgba(255, 140, 0, 0.9);
+      transform: scale(1.1);
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 1rem;
+      opacity: 0.9;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) }
+      50% { transform: translateY(-15px) }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      p.lead {
+        font-size: 1.1rem;
+        max-width: 90%;
+      }
+      a.button {
+        font-size: 1.5rem;
+        padding: 18px 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Minecraft Discord サーバー 🎉</h1>
+
+  <p class="lead">
+Minecraft Adventure Hubへようこそ！  
+ここはみんなで楽しくマイクラを遊ぶためのコミュニティサーバーです。  
+新しい友達と出会い、質問や情報交換、イベント参加ができます！  
+ルールを守って楽しい時間を過ごしましょう！
+
+— 主な活動内容 —  
+・Minecraftの攻略や質問交換  
+・ワールド紹介やスクショ共有  
+・定期的なゲーム内イベント開催  
+・楽しい雑談と交流  
+
+ご参加お待ちしています！
+  </p>
+
+  <a
+    class="button"
+    href="https://discord.gg/GnHMWUmj"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    今すぐDiscordに参加！
+  </a>
+
+  <footer>
+    ※参加無料！ルールを守って楽しく遊ぼうね☆
+  </footer>
+
+</body>
+</html>
+ポイント
+背景は明るいオレンジ～黄色のグラデーションで元気なイメージに
+
+フォントは丸みのある「Baloo 2」と「Fredoka One」で親しみやすさアップ
+
+ボタンは白ベースで、ホバー時にふわっと大きくなる演出
+
+文字に影をつけて立体感を出して見やすく
+
+テキストの改行を white-space: pre-line; でそのまま反映
+
+試してみて、もっとこうしたい！みたいな要望あったら教えてね。
+色とかフォントもカスタムできるよ〜！
+
+
+あなた:
+
+画像部分をこれにして
+
+ChatGPT:
+画像の差し替えですね！
+アップロードしてもらった画像 /mnt/data/4b40d25c-e84e-4382-a578-7261af9e37b7.png を使うようにHTMLを修正します。
+
+画像差し替え版のHTML（ポップ版をベースに）
+html
+コードをコピーする
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>マイクラDiscordサーバーへようこそ！</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Baloo+2&family=Roboto&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', cursive, 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #ffd54f, #ff6f00);
+      color: #333;
+      text-align: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 4rem;
+      margin-bottom: 25px;
+      color: #fff;
+      text-shadow: 2px 2px 6px #ff6f00;
+      animation: bounce 1.8s infinite;
+    }
+    p.lead {
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+      color: #fff;
+      line-height: 1.6;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
       white-space: pre-line;
     }
     .hero-image {
