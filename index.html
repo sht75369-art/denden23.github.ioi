@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>でんでんシャッフル動画ギャラリー</title>
-    
+
     <meta property="og:title" content="でんでんシャッフル動画ギャラリー">
     <meta property="og:description" content="好きな動画をランダムにシャッフル！見るたびに新しい発見があるよ！">
     <meta property="og:url" content="あなたのページのURLをここに貼り付けてください">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://i.imgur.com/your-image-url.png"> 
+    <meta property="og:image" content="https://i.imgur.com/your-image-url.png">
     <style>
         body {
             font-family: sans-serif;
@@ -137,7 +137,7 @@
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+                [[array], [array]] = [[array], [array]];
             }
         }
 
