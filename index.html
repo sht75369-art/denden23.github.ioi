@@ -1,187 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>でんでんシャッフル動画ギャラリー</title>
-
-    <meta property="og:title" content="でんでんシャッフル動画ギャラリー">
-    <meta property="og:description" content="好きな動画をランダムにシャッフル！見るたびに新しい発見があるよ！">
-    <meta property="og:url" content="あなたのページのURLをここに貼り付けてください">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://i.imgur.com/your-image-url.png">
-
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            background: linear-gradient(45deg, #330066, #000000, #330066);
-            background-size: 300% 300%;
-            animation: gradientAnimation 10s infinite alternate;
-        }
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        .container {
-            background-color: rgba(51, 0, 102, 0.8);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 20px auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 1;
-        }
-        h1 {
-            color: #ff00ff;
-            text-shadow: 3px 3px #00ffff;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            justify-content: center;
-            padding-top: 20px;
-        }
-        .video-item {
-            background-color: #1a1a1a;
-            border: 5px solid #6633ff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 12px rgba(255, 0, 255, 0.3);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease-out forwards;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: 2;
-            will-change: transform, box-shadow, opacity;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-        .video-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(255, 0, 255, 0.5);
-        }
-        .video-item iframe {
-            width: 100%;
-            height: 180px;
-            border: none;
-        }
-        .button-group {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            z-index: 2;
-            position: relative;
-        }
-        .main-button {
-            padding: 15px 30px;
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #00ffff;
-            background: linear-gradient(to bottom, #6633ff, #330066);
-            border: 4px solid #ff00ff;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(255, 0, 255, 0.5);
-            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-        }
-        .main-button:hover {
-            background: linear-gradient(to bottom, #7744ff, #441177);
-            transform: scale(1.03) rotate(2deg);
-            box-shadow: 0 6px 10px rgba(255, 0, 255, 0.7);
-        }
-        .main-button:active {
-            transform: scale(0.98) rotate(0deg);
-            animation: bounce 0.2s ease;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-5px);}
-            60% {transform: translateY(-3px);}
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>でんでんシャッフル動画ギャラリー</title>
+<style>
+body { font-family: sans-serif; margin:0; padding:20px; text-align:center; background:linear-gradient(45deg,#330066,#000,#330066); background-size:300% 300%; animation:gradAnim 10s infinite alternate; }
+@keyframes gradAnim {0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
+.container { background-color:rgba(51,0,102,0.8); border-radius:15px; padding:30px; max-width:1200px; margin:20px auto; box-shadow:0 10px 30px rgba(0,0,0,0.7);}
+h1 { color:#ff00ff; text-shadow:3px 3px #00ffff; font-size:2.5em; margin-bottom:20px;}
+.video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:25px; padding-top:20px; }
+.video-item { background:#1a1a1a; border:5px solid #6633ff; border-radius:12px; overflow:hidden; box-shadow:0 6px 12px rgba(255,0,255,0.3); opacity:0; transform:translateY(20px); animation:fadeIn 0.5s ease-out forwards; transition: transform 0.3s, box-shadow 0.3s;}
+.video-item:hover { transform:scale(1.05); box-shadow:0 8px 16px rgba(255,0,255,0.5);}
+.video-item iframe { width:100%; height:180px; border:none;}
+.button-group { margin-top:30px; display:flex; justify-content:center; gap:20px;}
+.main-button { padding:15px 30px; font-size:1.8em; font-weight:bold; color:#00ffff; background:linear-gradient(to bottom,#6633ff,#330066); border:4px solid #ff00ff; border-radius:10px; cursor:pointer; box-shadow:0 4px 8px rgba(255,0,255,0.5);}
+.main-button:hover { background:linear-gradient(to bottom,#7744ff,#441177); transform:scale(1.03) rotate(2deg); box-shadow:0 6px 10px rgba(255,0,255,0.7);}
+.main-button:active { transform:scale(0.98) rotate(0deg);}
+@keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>でんでんシャッフル動画ギャラリー</h1>
-        <div class="video-grid" id="video-grid"></div>
-        <div class="button-group">
-            <button class="main-button" onclick="populateVideos()">シャッフル</button>
-            <button class="main-button" onclick="shareGallery()">共有</button>
-        </div>
-    </div>
+<div class="container">
+<h1>でんでんシャッフル動画ギャラリー</h1>
+<div class="video-grid" id="video-grid"></div>
+<div class="button-group">
+<button class="main-button" onclick="populateVideos()">シャッフル</button>
+<button class="main-button" onclick="shareGallery()">共有</button>
+</div>
+</div>
+<script>
+const videoIds = [
+"wBRckqbiQYU","P6F4RPDf_Uw","xqNed0wbTkY","b0xFJK02Hyc","vbnHkMYPQfo",
+"4VchaAVrDpw","dn2wekRQGbA","sqTZmDZ9pZo","TJuXRVuoYug","ccsqZqnDHcM",
+"f2f_Q0UEOEI","bFChbozt570","6MCSpB9Tkxc","rpSaNn7CzXU",
+"qzjZJDM9Odw","Shm7iE_gzi8","n6kOBwc0qdQ","GN_iO6RovA8","76nTsmCP6D0",
+"cqZgP2gHLU0","LJl24nerjRA","f1oQ-mYnQo8","7-u3N_6Ew2w","d0p2w4nO8Rk",
+"SLn0Lq-Job4","4CTe77e2OAQ","iH7gMzUTHoo","WFAndJrLfz4","4DMsoND2Ays",
+"vt_mFYbrbaY","36z7u61z7oQ"
+];
 
-    <script>
-        const videoIds = [
-            "9nZ9oYwW7Os","G8i3B0cG0FA","E3yP48kpWbQ","5X4lXZb6T6E","8N8jGdV1Kss",
-            "6FqV3ZK8KQA","3aD3bG6nHws","R8oQx0v2vYc","L1fTnXQWz2Y","Y7B4t9o3QpI",
-            "wBRckqbiQYU","P6F4RPDf_Uw","xqNed0wbTkY","b0xFJK02Hyc","vbnHkMYPQfo",
-            "4VchaAVrDpw","dn2wekRQGbA","sqTZmDZ9pZo","TJuXRVuoYug","ccsqZqnDHcM",
-            "wLPNpjk8Qd0","NqtjeElTDNs","Z281A0XK5Aw","JRo4bkWyJ-8",
-            "f2f_Q0UEOEI","bFChbozt570","6MCSpB9Tkxc","uUatjGMcr0U","qfPtSRBS68U","rpSaNn7CzXU",
-            "qzjZJDM9Odw","Shm7iE_gzi8","n6kOBwc0qdQ","GN_iO6RovA8","76nTsmCP6D0",
-            "cqZgP2gHLU0","LJl24nerjRA","f1oQ-mYnQo8","7-u3N_6Ew2w","d0p2w4nO8Rk",
-            "SLn0Lq-Job4","4CTe77e2OAQ","iH7gMzUTHoo","WFAndJrLfz4","4DMsoND2Ays",
-            "vt_mFYbrbaY","36z7u61z7oQ"
-        ];
+let previousVideos = [];
 
-        let previousVideos = [];
+function shuffleArray(array){
+for(let i=array.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}}
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
+function populateVideos(){
+let available=videoIds.filter(id=>!previousVideos.includes(id));
+if(available.length<9) available=[...videoIds];
+shuffleArray(available);
+const selected=available.slice(0,9);
+previousVideos=selected;
+const grid=document.getElementById("video-grid");
+grid.innerHTML="";
+selected.forEach((id,i)=>{
+const item=document.createElement("div");
+item.className="video-item";
+item.style.animationDelay=`${i*0.1}s`;
+item.innerHTML=`<iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+grid.appendChild(item);
+});
+}
 
-        function populateVideos() {
-            let availableVideos = videoIds.filter(id => !previousVideos.includes(id));
-            if (availableVideos.length < 9) availableVideos = [...videoIds];
+function shareGallery(){
+const url=window.location.href;
+if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>{alert("URLをコピーしました");}).catch(()=>{alert("コピー失敗");});}else{alert("手動でコピーしてください\n"+url);}
+}
 
-            shuffleArray(availableVideos);
-            const selectedVideos = availableVideos.slice(0, 9);
-            previousVideos = selectedVideos;
-
-            const videoGrid = document.getElementById("video-grid");
-            videoGrid.innerHTML = "";
-
-            selectedVideos.forEach((videoId, i) => {
-                const videoItem = document.createElement("div");
-                videoItem.className = "video-item";
-                videoItem.style.animationDelay = `${i * 0.1}s`;
-                videoItem.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
-                videoGrid.appendChild(videoItem);
-            });
-        }
-
-        function shareGallery() {
-            const pageUrl = window.location.href;
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(pageUrl).then(() => {
-                    alert('URLをクリップボードにコピーしました！');
-                }).catch(err => {
-                    console.error('URLのコピーに失敗しました', err);
-                    alert('URLのコピーに失敗しました。');
-                });
-            } else {
-                alert("お使いのブラウザでは自動コピーに対応していません。URLをコピーして手動で共有してください。\n" + pageUrl);
-            }
-        }
-
-        window.onload = function() {
-            populateVideos();
-        };
-    </script>
+window.onload=function(){ populateVideos(); }
+</script>
 </body>
 </html>
