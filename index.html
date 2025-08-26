@@ -1,141 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>マイクラDiscordサーバーへようこそ！</title>
+  <title>24分×12本 | パープル・ポップ動画ギャラリー</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Baloo+2&family=Roboto&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Baloo 2', cursive, 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #ffd54f, #ff6f00);
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background: #1a1035;
+      color: #f5f3ff;
+    }
+    header {
       text-align: center;
-      min-height: 100vh;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow-x: hidden;
+      padding: 20px;
+      background: linear-gradient(90deg, #a855f7, #7c3aed);
+      color: white;
     }
     h1 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 4rem;
-      margin-bottom: 25px;
-      color: #fff;
-      text-shadow: 2px 2px 6px #ff6f00;
-      animation: bounce 1.8s infinite;
+      margin: 0;
     }
-    p.lead {
-      font-size: 1.4rem;
-      margin-bottom: 40px;
-      color: #fff;
-      line-height: 1.6;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-      white-space: pre-line;
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
-    .hero-image {
-      max-width: 650px;
-      width: 90%;
-      border-radius: 25px;
-      box-shadow: 0 15px 35px rgba(255, 111, 0, 0.6);
-      margin: 0 auto 40px auto;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 5px solid #fff;
+    .card {
+      background: #2a145a;
+      padding: 10px;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      text-align: center;
     }
-    .hero-image:hover {
-      transform: scale(1.05);
-      box-shadow: 0 20px 45px rgba(255, 140, 0, 0.9);
+    video {
+      width: 100%;
+      border-radius: 12px;
     }
-    a.button {
-      background: #fff;
-      color: #ff6f00;
-      font-weight: 700;
-      font-size: 1.9rem;
-      padding: 22px 70px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 8px 20px rgba(255, 111, 0, 0.7);
-      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      display: inline-block;
-      user-select: none;
-      font-family: 'Fredoka One', cursive;
-    }
-    a.button:hover {
-      background: #ffcc80;
-      box-shadow: 0 12px 30px rgba(255, 140, 0, 0.9);
-      transform: scale(1.1);
-    }
-    footer {
-      margin-top: 50px;
-      font-size: 1rem;
-      opacity: 0.9;
-      color: #fff;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0) }
-      50% { transform: translateY(-15px) }
-    }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.8rem;
-      }
-      p.lead {
-        font-size: 1.1rem;
-        max-width: 90%;
-      }
-      a.button {
-        font-size: 1.5rem;
-        padding: 18px 50px;
-      }
+    h3 {
+      margin: 10px 0 0;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-
-  <h1>🎉 Minecraft Discord サーバー 🎉</h1>
-
-  <p class="lead">
-Minecraft Adventure Hubへようこそ！  
-ここはみんなで楽しくマイクラを遊ぶためのコミュニティサーバーです。  
-新しい友達と出会い、質問や情報交換、イベント参加ができます！  
-ルールを守って楽しい時間を過ごしましょう！
-
-— 主な活動内容 —  
-・Minecraftの攻略や質問交換  
-・ワールド紹介やスクショ共有  
-・定期的なゲーム内イベント開催  
-・楽しい雑談と交流  
-
-ご参加お待ちしています！
-  </p>
-
-  <img
-    class="hero-image"
-    src="https://jikkyofont.com/wp-content/uploads/2021/10/1-4-1024x576.jpg"
-    alt="Minecraft メイン画面のスクリーンショット"
-    loading="lazy"
-  />
-
-  <a
-    class="button"
-    href="https://discord.gg/GnHMWUmj"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    今すぐDiscordに参加！
-  </a>
-
-  <footer>
-    ※参加無料！ルールを守って楽しく遊ぼうね☆
-  </footer>
-
+  <header>
+    <h1>24分×12本 | ポップ紫ギャラリー</h1>
+    <p>動画ファイルを <code>videos</code> フォルダに入れてください。</p>
+  </header>
+  <main>
+    <div class="card">
+      <video src="[SubsPlease] Shirohiyo - 01 (1080p) [E27CACBE].mkv.mp4" controls></video>
+      <h3>Episode 01</h3>
+    </div>
+    <div class="card">
+      <video src="videos/02.mp4" controls></video>
+      <h3>Episode 02</h3>
+    </div>
+    <div class="card">
+      <video src="videos/03.mp4" controls></video>
+      <h3>Episode 03</h3>
+    </div>
+    <div class="card">
+      <video src="videos/04.mp4" controls></video>
+      <h3>Episode 04</h3>
+    </div>
+    <div class="card">
+      <video src="videos/05.mp4" controls></video>
+      <h3>Episode 05</h3>
+    </div>
+    <div class="card">
+      <video src="videos/06.mp4" controls></video>
+      <h3>Episode 06</h3>
+    </div>
+    <div class="card">
+      <video src="videos/07.mp4" controls></video>
+      <h3>Episode 07</h3>
+    </div>
+    <div class="card">
+      <video src="videos/08.mp4" controls></video>
+      <h3>Episode 08</h3>
+    </div>
+    <div class="card">
+      <video src="videos/09.mp4" controls></video>
+      <h3>Episode 09</h3>
+    </div>
+    <div class="card">
+      <video src="videos/10.mp4" controls></video>
+      <h3>Episode 10</h3>
+    </div>
+    <div class="card">
+      <video src="videos/11.mp4" controls></video>
+      <h3>Episode 11</h3>
+    </div>
+    <div class="card">
+      <video src="videos/12.mp4" controls></video>
+      <h3>Episode 12</h3>
+    </div>
+  </main>
 </body>
 </html>
+
