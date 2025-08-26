@@ -213,9 +213,6 @@
         
         function shareGallery() {
             const pageUrl = window.location.href;
-            const shareText = "見てみて！僕の好きな動画がランダムで見れる「でんでんシャッフル動画ギャラリー」だよ！";
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`;
-        
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(pageUrl).then(() => {
                     alert('URLをクリップボードにコピーしました！');
@@ -226,11 +223,11 @@
             } else {
                 alert("お使いのブラウザでは自動コピーに対応していません。URLをコピーして手動で共有してください。\n" + pageUrl);
             }
-            window.open(twitterUrl, '_blank', 'noopener,noreferrer');
         }
         
         function createStars(count) {
             const starContainer = document.getElementById('star-container');
+            if (!starContainer) return; // star-containerが存在しない場合は処理を終了
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
