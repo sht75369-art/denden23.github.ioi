@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>でんでんシャッフル動画ギャラリー</title>
-    <style>
+    
+    <meta property="og:title" content="でんでんシャッフル動画ギャラリー">
+    <meta property="og:description" content="好きな動画をランダムにシャッフル！見るたびに新しい発見があるよ！">
+    <meta property="og:url" content="あなたのページのURLをここに貼り付けてください">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.imgur.com/your-image-url.png"> <style>
         body {
             font-family: sans-serif;
             margin: 0;
@@ -25,6 +30,8 @@
             max-width: 1200px;
             margin: 20px auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1;
         }
         h1 {
             color: #ff00ff;
@@ -49,18 +56,33 @@
             transform: translateY(20px);
             animation: fadeIn 0.5s ease-out forwards;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 2;
         }
         .video-item:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(255, 0, 255, 0.5);
+            animation: pulseShadow 1.5s infinite;
+        }
+        @keyframes pulseShadow {
+            0% { box-shadow: 0 6px 12px rgba(255, 0, 255, 0.3); }
+            50% { box-shadow: 0 6px 20px rgba(255, 0, 255, 0.7); }
+            100% { box-shadow: 0 6px 12px rgba(255, 0, 255, 0.3); }
         }
         .video-item iframe {
             width: 100%;
             height: 180px;
             border: none;
         }
-        .shuffle-button {
+        .button-group {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        .main-button {
             padding: 15px 30px;
             font-size: 1.8em;
             font-weight: bold;
@@ -70,14 +92,15 @@
             border-radius: 10px;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(255, 0, 255, 0.5);
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
         }
-        .shuffle-button:hover {
+        .main-button:hover {
             background: linear-gradient(to bottom, #7744ff, #441177);
-            transform: scale(1.03);
+            transform: scale(1.03) rotate(2deg);
+            box-shadow: 0 6px 10px rgba(255, 0, 255, 0.7);
         }
-        .shuffle-button:active {
-            transform: scale(0.98);
+        .main-button:active {
+            transform: scale(0.98) rotate(0deg);
             animation: bounce 0.2s ease;
         }
         @keyframes fadeIn {
@@ -88,18 +111,54 @@
             40% {transform: translateY(-5px);}
             60% {transform: translateY(-3px);}
         }
+        .star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+        .star::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 50%;
+            animation: glow 2s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px 2px #fff; }
+            50% { box-shadow: 0 0 10px 5px #ff00ff; }
+        }
     </style>
 </head>
 <body>
+    <div class="star-container" id="star-container"></div>
     <div class="container">
         <h1>でんでんシャッフル動画ギャラリー</h1>
         <div class="video-grid" id="video-grid">
             </div>
-        <button class="shuffle-button" onclick="populateVideos()">シャッフル</button>
+        <div class="button-group">
+            <button class="main-button" onclick="populateVideos()">シャッフル</button>
+            <button class="main-button" onclick="shareGallery()">共有</button>
+        </div>
     </div>
 
     <script>
-        // 動画のIDリスト
         const videoIds = [
             "Exsrtc3cHMQ",
             "KoijxYsR--Y",
@@ -130,7 +189,6 @@
             "TXABDcqIPzs"
         ];
         
-        // 配列をランダムにシャッフルする関数
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -138,27 +196,56 @@
             }
         }
         
-        // 動画をHTMLに挿入する関数
         function populateVideos() {
-            // 動画IDをシャッフル
             shuffleArray(videoIds);
             const videoGrid = document.getElementById("video-grid");
-            videoGrid.innerHTML = ""; // 既存の動画をクリア
-        
-            const videosToDisplay = 9; // 表示する動画の数
-        
+            videoGrid.innerHTML = "";
+            const videosToDisplay = 9;
             for (let i = 0; i < videosToDisplay; i++) {
                 const videoId = videoIds[i];
                 const videoItem = document.createElement("div");
                 videoItem.className = "video-item";
-                videoItem.style.animationDelay = `${i * 0.1}s`; // 連続的なフェードイン効果
+                videoItem.style.animationDelay = `${i * 0.1}s`;
                 videoItem.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
                 videoGrid.appendChild(videoItem);
             }
         }
         
-        // ページ読み込み時に動画を生成
-        window.onload = populateVideos;
+        function shareGallery() {
+            const pageUrl = window.location.href;
+            const shareText = "見てみて！僕の好きな動画がランダムで見れる「でんでんシャッフル動画ギャラリー」だよ！";
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`;
+        
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(pageUrl).then(() => {
+                    alert('URLをクリップボードにコピーしました！');
+                }).catch(err => {
+                    console.error('URLのコピーに失敗しました', err);
+                    alert('URLのコピーに失敗しました。');
+                });
+            } else {
+                alert("お使いのブラウザでは自動コピーに対応していません。URLをコピーして手動で共有してください。\n" + pageUrl);
+            }
+            window.open(twitterUrl, '_blank', 'noopener,noreferrer');
+        }
+        
+        function createStars(count) {
+            const starContainer = document.getElementById('star-container');
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.width = star.style.height = `${Math.random() * 3 + 1}px`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                starContainer.appendChild(star);
+            }
+        }
+        
+        window.onload = function() {
+            populateVideos();
+            createStars(50);
+        };
     </script>
 </body>
 </html>
