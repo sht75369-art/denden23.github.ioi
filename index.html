@@ -109,43 +109,9 @@
             40% {transform: translateY(-5px);}
             60% {transform: translateY(-3px);}
         }
-        .star-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 2s infinite ease-in-out;
-        }
-        .star::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border-radius: 50%;
-            animation: glow 2s infinite ease-in-out;
-        }
-        @keyframes twinkle {
-            0%, 100% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px 2px #fff; }
-            50% { box-shadow: 0 0 10px 5px #ff00ff; }
-        }
     </style>
 </head>
 <body>
-    <div class="star-container" id="star-container"></div>
     <div class="container">
         <h1>でんでんシャッフル動画ギャラリー</h1>
         <div class="video-grid" id="video-grid"></div>
@@ -176,14 +142,12 @@
         }
 
         function populateVideos() {
-            // 前回表示された動画を除外
             let availableVideos = videoIds.filter(id => !previousVideos.includes(id));
-            // 足りない場合はリセット
             if (availableVideos.length < 9) availableVideos = [...videoIds];
 
             shuffleArray(availableVideos);
             const selectedVideos = availableVideos.slice(0, 9);
-            previousVideos = selectedVideos; // 今回表示分を保存
+            previousVideos = selectedVideos;
 
             const videoGrid = document.getElementById("video-grid");
             videoGrid.innerHTML = "";
@@ -211,23 +175,8 @@
             }
         }
 
-        function createStars(count) {
-            const starContainer = document.getElementById('star-container');
-            if (!starContainer) return;
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.width = star.style.height = `${Math.random() * 3 + 1}px`;
-                star.style.animationDelay = `${Math.random() * 2}s`;
-                starContainer.appendChild(star);
-            }
-        }
-
         window.onload = function() {
             populateVideos();
-            createStars(50);
         };
     </script>
 </body>
