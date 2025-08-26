@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>でんでんシャッフル動画ギャラリー</title>
-    <style>
+    
+    <meta property="og:title" content="でんでんシャッフル動画ギャラリー">
+    <meta property="og:description" content="好きな動画をランダムにシャッフル！見るたびに新しい発見があるよ！">
+    <meta property="og:url" content="あなたのページのURLをここに貼り付けてください">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.imgur.com/your-image-url.png"> <style>
         body {
             font-family: sans-serif;
             margin: 0;
@@ -67,8 +72,13 @@
             height: 180px;
             border: none;
         }
-        .shuffle-button {
+        .button-group {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .main-button {
             padding: 15px 30px;
             font-size: 1.8em;
             font-weight: bold;
@@ -80,12 +90,12 @@
             box-shadow: 0 4px 8px rgba(255, 0, 255, 0.5);
             transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
         }
-        .shuffle-button:hover {
+        .main-button:hover {
             background: linear-gradient(to bottom, #7744ff, #441177);
             transform: scale(1.03) rotate(2deg);
             box-shadow: 0 6px 10px rgba(255, 0, 255, 0.7);
         }
-        .shuffle-button:active {
+        .main-button:active {
             transform: scale(0.98) rotate(0deg);
             animation: bounce 0.2s ease;
         }
@@ -127,7 +137,10 @@
         <h1>でんでんシャッフル動画ギャラリー</h1>
         <div class="video-grid" id="video-grid">
             </div>
-        <button class="shuffle-button" onclick="populateVideos()">シャッフル</button>
+        <div class="button-group">
+            <button class="main-button" onclick="populateVideos()">シャッフル</button>
+            <button class="main-button" onclick="shareGallery()">共有</button>
+        </div>
     </div>
 
     <script>
@@ -182,7 +195,25 @@
                 videoGrid.appendChild(videoItem);
             }
         }
-
+        
+        function shareGallery() {
+            const pageUrl = window.location.href;
+            const shareText = "見てみて！僕の好きな動画がランダムで見れる「でんでんシャッフル動画ギャラリー」だよ！";
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`;
+        
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(pageUrl).then(() => {
+                    alert('URLをクリップボードにコピーしました！');
+                }).catch(err => {
+                    console.error('URLのコピーに失敗しました', err);
+                    alert('URLのコピーに失敗しました。');
+                });
+            } else {
+                alert("お使いのブラウザでは自動コピーに対応していません。URLをコピーして手動で共有してください。\n" + pageUrl);
+            }
+            window.open(twitterUrl, '_blank', 'noopener,noreferrer');
+        }
+        
         function createStars(count) {
             const body = document.body;
             for (let i = 0; i < count; i++) {
