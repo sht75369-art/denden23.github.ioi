@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ランダムでんでん動画ギャラリー</title>
+    <title>でんでんシャッフル動画ギャラリー</title>
     <style>
         body {
-            background-color: #eeff00;
+            background-color: #000000; /* 黒 */
             font-family: sans-serif;
             margin: 0;
             padding: 20px;
             text-align: center;
         }
         .container {
-            background-color: #9933ff;
+            background-color: #330066; /* 深い紫 */
             border-radius: 15px;
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
         h1 {
-            color: white;
-            text-shadow: 2px 2px #00cc00;
+            color: #ff00ff; /* 鮮やかなマゼンタ */
+            text-shadow: 2px 2px #00ffff; /* シアンのシャドウ */
         }
         .video-grid {
             display: grid;
@@ -32,11 +32,11 @@
             padding-top: 20px;
         }
         .video-item {
-            background-color: white;
-            border: 5px solid #00cc00;
+            background-color: #1a1a1a; /* 少し明るい黒 */
+            border: 5px solid #6633ff; /* 明るい紫 */
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
         }
         .video-item iframe {
             width: 100%;
@@ -49,20 +49,20 @@
             font-size: 16px;
             font-weight: bold;
             color: white;
-            background-color: #ff00cc;
-            border: 3px solid #00cc00;
+            background-color: #6633ff;
+            border: 3px solid #ff00ff;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
         .shuffle-button:hover {
-            background-color: #e600b8;
+            background-color: #5522ee;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ランダムでんでん動画ギャラリー</h1>
+        <h1>でんでんシャッフル動画ギャラリー</h1>
         <div class="video-grid" id="video-grid">
             </div>
         <button class="shuffle-button" onclick="populateVideos()">シャッフル</button>
@@ -115,7 +115,7 @@
             const videoGrid = document.getElementById("video-grid");
             videoGrid.innerHTML = ""; // 既存の動画をクリア
 
-            const videosToDisplay = 9; // ☆ここを9に変更しました
+            const videosToDisplay = 9; // 表示する動画の数
 
             for (let i = 0; i < videosToDisplay; i++) {
                 const videoId = videoIds[i];
@@ -131,6 +131,3 @@
     </script>
 </body>
 </html>
-
-
-
