@@ -9,7 +9,8 @@
     <meta property="og:description" content="好きな動画をランダムにシャッフル！見るたびに新しい発見があるよ！">
     <meta property="og:url" content="あなたのページのURLをここに貼り付けてください">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://i.imgur.com/your-image-url.png"> <style>
+    <meta property="og:image" content="https://i.imgur.com/your-image-url.png"> 
+    <style>
         body {
             font-family: sans-serif;
             margin: 0;
@@ -58,16 +59,13 @@
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             z-index: 2;
+            will-change: transform, box-shadow, opacity;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
         .video-item:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(255, 0, 255, 0.5);
-            animation: pulseShadow 1.5s infinite;
-        }
-        @keyframes pulseShadow {
-            0% { box-shadow: 0 6px 12px rgba(255, 0, 255, 0.3); }
-            50% { box-shadow: 0 6px 20px rgba(255, 0, 255, 0.7); }
-            100% { box-shadow: 0 6px 12px rgba(255, 0, 255, 0.3); }
         }
         .video-item iframe {
             width: 100%;
@@ -150,8 +148,7 @@
     <div class="star-container" id="star-container"></div>
     <div class="container">
         <h1>でんでんシャッフル動画ギャラリー</h1>
-        <div class="video-grid" id="video-grid">
-            </div>
+        <div class="video-grid" id="video-grid"></div>
         <div class="button-group">
             <button class="main-button" onclick="populateVideos()">シャッフル</button>
             <button class="main-button" onclick="shareGallery()">共有</button>
@@ -160,57 +157,46 @@
 
     <script>
         const videoIds = [
-            "Exsrtc3cHMQ",
-            "KoijxYsR--Y",
-            "kUs3FXDqiig",
-            "h8fhRlS_sLg",
-            "OW_qEgEjWqY",
-            "BhUBKxFN_Tk",
-            "cyMKetAmq2w",
-            "gq0C6-Qu1eQ",
-            "TeLstIBwC6M",
-            "9kQ2GtvDV3s",
-            "_MzMGIBdV48",
-            "DYZUBzZtJSQ",
-            "1Wb0E3vJVJE",
-            "mZ0sJQC8qkE",
-            "mZ0sJQC8qkE",
-            "N029UUlH1Dc",
-            "wfCcs0vLysk",
-            "jWusLrUlQ9k",
-            "D6wN8F36Sqs",
-            "S1I70OBhBNo",
-            "Zl6tdYtG9os",
-            "3gPMTIzIwW8",
-            "ytbsmeXBbNc",
-            "L3jGIoTTvkQ",
-            "OzKnSZHCr2c",
-            "QQO3iSFJ7A0",
-            "TXABDcqIPzs"
+            "Exsrtc3cHMQ","KoijxYsR--Y","kUs3FXDqiig","h8fhRlS_sLg",
+            "OW_qEgEjWqY","BhUBKxFN_Tk","cyMKetAmq2w","gq0C6-Qu1eQ",
+            "TeLstIBwC6M","9kQ2GtvDV3s","_MzMGIBdV48","DYZUBzZtJSQ",
+            "1Wb0E3vJVJE","mZ0sJQC8qkE","N029UUlH1Dc","wfCcs0vLysk",
+            "jWusLrUlQ9k","D6wN8F36Sqs","S1I70OBhBNo","Zl6tdYtG9os",
+            "3gPMTIzIwW8","ytbsmeXBbNc","L3jGIoTTvkQ","OzKnSZHCr2c",
+            "QQO3iSFJ7A0","TXABDcqIPzs"
         ];
-        
+
+        let previousVideos = [];
+
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
-        
+
         function populateVideos() {
-            shuffleArray(videoIds);
+            // 前回表示された動画を除外
+            let availableVideos = videoIds.filter(id => !previousVideos.includes(id));
+            // 足りない場合はリセット
+            if (availableVideos.length < 9) availableVideos = [...videoIds];
+
+            shuffleArray(availableVideos);
+            const selectedVideos = availableVideos.slice(0, 9);
+            previousVideos = selectedVideos; // 今回表示分を保存
+
             const videoGrid = document.getElementById("video-grid");
             videoGrid.innerHTML = "";
-            const videosToDisplay = 9;
-            for (let i = 0; i < videosToDisplay; i++) {
-                const videoId = videoIds[i];
+
+            selectedVideos.forEach((videoId, i) => {
                 const videoItem = document.createElement("div");
                 videoItem.className = "video-item";
                 videoItem.style.animationDelay = `${i * 0.1}s`;
                 videoItem.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
                 videoGrid.appendChild(videoItem);
-            }
+            });
         }
-        
+
         function shareGallery() {
             const pageUrl = window.location.href;
             if (navigator.clipboard) {
@@ -224,10 +210,10 @@
                 alert("お使いのブラウザでは自動コピーに対応していません。URLをコピーして手動で共有してください。\n" + pageUrl);
             }
         }
-        
+
         function createStars(count) {
             const starContainer = document.getElementById('star-container');
-            if (!starContainer) return; // star-containerが存在しない場合は処理を終了
+            if (!starContainer) return;
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
@@ -238,7 +224,7 @@
                 starContainer.appendChild(star);
             }
         }
-        
+
         window.onload = function() {
             populateVideos();
             createStars(50);
