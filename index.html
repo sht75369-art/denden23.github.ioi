@@ -123,13 +123,40 @@
 
     <script>
         const videoIds = [
-            "Exsrtc3cHMQ","KoijxYsR--Y","kUs3FXDqiig","h8fhRlS_sLg",
-            "OW_qEgEjWqY","BhUBKxFN_Tk","cyMKetAmq2w","gq0C6-Qu1eQ",
-            "TeLstIBwC6M","9kQ2GtvDV3s","_MzMGIBdV48","DYZUBzZtJSQ",
-            "1Wb0E3vJVJE","mZ0sJQC8qkE","N029UUlH1Dc","wfCcs0vLysk",
-            "jWusLrUlQ9k","D6wN8F36Sqs","S1I70OBhBNo","Zl6tdYtG9os",
-            "3gPMTIzIwW8","ytbsmeXBbNc","L3jGIoTTvkQ","OzKnSZHCr2c",
-            "QQO3iSFJ7A0","TXABDcqIPzs"
+            "9nZ9oYwW7Os",
+            "G8i3B0cG0FA",
+            "E3yP48kpWbQ",
+            "5X4lXZb6T6E",
+            "8N8jGdV1Kss",
+            "G8i3B0cG0FA",
+            "E3yP48kpWbQ",
+            "5X4lXZb6T6E",
+            "9nZ9oYwW7Os",
+            "6FqV3ZK8KQA",
+            "3aD3bG6nHws",
+            "R8oQx0v2vYc",
+            "L1fTnXQWz2Y",
+            "Y7B4t9o3QpI",
+            "abcd1234_3d1",
+            "abcd1234_3d2",
+            "abcd1234_3d3",
+            "abcd1234_3d4",
+            "abcd1234_3d5",
+            "abcd1234_3d6",
+            "abcd1234_3d7",
+            "abcd1234_3d8",
+            "abcd1234_3d9",
+            "abcd1234_3d10",
+            "abcd1234game1",
+            "abcd1234game2",
+            "abcd1234game3",
+            "abcd1234game4",
+            "abcd1234game5",
+            "abcd1234game6",
+            "abcd1234game7",
+            "abcd1234game8",
+            "abcd1234game9",
+            "abcd1234game10"
         ];
 
         let previousVideos = [];
@@ -137,7 +164,7 @@
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [[array], [array]] = [[array], [array]];
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
