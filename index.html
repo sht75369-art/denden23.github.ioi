@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>でんでんランダム動画ギャラリー</title>
+    <title>ランダム動画ギャラリー</title>
     <style>
         body {
-            background-color: #eeff00; /* 黄色 */
+            background-color: #eeff00;
             font-family: sans-serif;
             margin: 0;
             padding: 20px;
             text-align: center;
         }
         .container {
-            background-color: #9933ff; /* 紫 */
+            background-color: #9933ff;
             border-radius: 15px;
             padding: 20px;
             max-width: 1200px;
@@ -22,7 +22,7 @@
         }
         h1 {
             color: white;
-            text-shadow: 2px 2px #00cc00; /* 緑 */
+            text-shadow: 2px 2px #00cc00;
         }
         .video-grid {
             display: grid;
@@ -33,60 +33,101 @@
         }
         .video-item {
             background-color: white;
-            border: 5px solid #00cc00; /* 緑 */
+            border: 5px solid #00cc00;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .video-item iframe {
             width: 100%;
-            height: 180px; /* 適切なサイズに調整 */
+            height: 180px;
             border: none;
+        }
+        .shuffle-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff00cc;
+            border: 3px solid #00cc00;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .shuffle-button:hover {
+            background-color: #e600b8;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ポップな動画ギャラリー</h1>
-        <div class="video-grid">
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/Exsrtc3cHMQ" allowfullscreen></iframe>
+        <h1>ランダム動画ギャラリー</h1>
+        <div class="video-grid" id="video-grid">
             </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/KoijxYsR--Y" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/kUs3FXDqiig" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/h8fhRlS_sLg" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/OW_qEgEjWqY" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/BhUBKxFN_Tk" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/cyMKetAmq2w" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/gq0C6-Qu1eQ" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/TeLstIBwC6M" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/9kQ2GtvDV3s" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/_MzMGIBdV48" allowfullscreen></iframe>
-            </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/DYZUBzZtJSQ" allowfullscreen></iframe>
-            </div>
-        </div>
+        <button class="shuffle-button" onclick="populateVideos()">シャッフル</button>
     </div>
+
+    <script>
+        // 動画のIDリスト
+        const videoIds = [
+            "Exsrtc3cHMQ",
+            "KoijxYsR--Y",
+            "kUs3FXDqiig",
+            "h8fhRlS_sLg",
+            "OW_qEgEjWqY",
+            "BhUBKxFN_Tk",
+            "cyMKetAmq2w",
+            "gq0C6-Qu1eQ",
+            "TeLstIBwC6M",
+            "9kQ2GtvDV3s",
+            "_MzMGIBdV48",
+            "DYZUBzZtJSQ",
+            "1Wb0E3vJVJE",
+            "mZ0sJQC8qkE",
+            "mZ0sJQC8qkE",
+            "N029UUlH1Dc",
+            "wfCcs0vLysk",
+            "jWusLrUlQ9k",
+            "D6wN8F36Sqs",
+            "S1I70OBhBNo",
+            "Zl6tdYtG9os",
+            "3gPMTIzIwW8",
+            "ytbsmeXBbNc",
+            "L3jGIoTTvkQ",
+            "OzKnSZHCr2c",
+            "QQO3iSFJ7A0",
+            "TXABDcqIPzs"
+        ];
+
+        // 配列をランダムにシャッフルする関数
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // 動画をHTMLに挿入する関数
+        function populateVideos() {
+            // 動画IDをシャッフル
+            shuffleArray(videoIds);
+            const videoGrid = document.getElementById("video-grid");
+            videoGrid.innerHTML = ""; // 既存の動画をクリア
+
+            const videosToDisplay = 12; // 表示する動画の数
+
+            for (let i = 0; i < videosToDisplay; i++) {
+                const videoId = videoIds[i];
+                const videoItem = document.createElement("div");
+                videoItem.className = "video-item";
+                videoItem.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+                videoGrid.appendChild(videoItem);
+            }
+        }
+
+        // ページ読み込み時に動画を生成
+        window.onload = populateVideos;
+    </script>
 </body>
 </html>
-
